@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.tweeteroapi.DTO.UserDTO;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/sign-up")
 public class AuthController {
-    @PostMapping("sign-up")
+
+
+    @PostMapping
     public String signUp(@RequestBody UserDTO req){
         return "OK";
     }
