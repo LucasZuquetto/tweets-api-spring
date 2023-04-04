@@ -26,6 +26,9 @@ public class Tweet{
 
     @Column(length = 30, nullable = false)
     private String username;
+
+    @Column(length = 300, nullable = false)
+    private String avatar;
     
     @Column(length = 300, nullable = false)
     private String text;
