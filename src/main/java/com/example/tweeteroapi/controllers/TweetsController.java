@@ -17,6 +17,8 @@ import com.example.tweeteroapi.models.Tweet;
 import com.example.tweeteroapi.repositories.TweetsRepository;
 import com.example.tweeteroapi.services.TweetsService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/tweets")
 public class TweetsController {
@@ -25,7 +27,7 @@ public class TweetsController {
     private TweetsService service;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody TweetsDTO req){
+    public ResponseEntity<Object> create(@RequestBody @Valid TweetsDTO req){
         service.saveTweet(req);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }

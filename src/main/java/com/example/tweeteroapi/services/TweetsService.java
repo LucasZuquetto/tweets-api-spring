@@ -24,9 +24,9 @@ public class TweetsService {
     public void saveTweet(TweetsDTO req){
         Users userData = authRepository.findByUsername(req.username());
         String avatar = userData.getAvatar();
-        Tweet obj = new Tweet(req);
-        obj.setAvatar(avatar);
-        tweetsRepository.save(obj);
+        Tweet tweet = new Tweet(req);
+        tweet.setAvatar(avatar);
+        tweetsRepository.save(tweet);
     }
 
     public List<Tweet> getTweetsByUsername(String data){
