@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -31,5 +34,10 @@ public class TweetsService {
 
     public List<Tweet> getTweetsByUsername(String data){
         return tweetsRepository.findByUsername(data);
+    }
+
+    public List<Tweet> getTweetsByPage(int page){
+        Page<Tweet> tweetsPage = tweetsRepository.findAll(PageRequest.of(page, 5).withSort(Direction.DESC, "id"));
+        return tweetsPage.getContent();
     }
 }

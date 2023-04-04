@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.tweeteroapi.DTO.TweetsDTO;
@@ -30,6 +31,13 @@ public class TweetsController {
     public ResponseEntity<Object> create(@RequestBody @Valid TweetsDTO req){
         service.saveTweet(req);
         return new ResponseEntity<>("OK", HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Tweet>> getLastTweets(@RequestParam(defaultValue = "0", required = false) int page){
+
+        List<Tweet> tweets = service.getTweetsByPage(page);
+        return ResponseEntity.ok().body(tweets);
     }
 
     @GetMapping("/{username}")
